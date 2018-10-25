@@ -2,33 +2,55 @@ import * as fs from 'fs';
 
 import { Constants } from "./constants";
 import { Common } from "./common";
+import { FileOperations } from './file-operations';
 
 export class ConvertOperations {
 
-    public static buildJsons(groupedData, fullPath) {
+    constructor() { }
+
+    /**
+     * Recursively finds all sass declarations associated with the corresponding group.
+     * 
+     * @param groupedData sorted data by group
+     * @param fullPath directory to export
+     */
+    public writeJsonsData(groupedData, fullPath) {
         if (Array.isArray(groupedData)) {
-            ConvertOperations.buildJson(groupedData, fullPath);
+            this.writeToFileJson(groupedData, fullPath);
             return;
         }
 
         const keys = Object.keys(groupedData);
         keys.forEach(key => {
-            ConvertOperations.buildJsons(groupedData[key], fullPath);
+            this.writeJsonsData(groupedData[key], fullPath);
         });
     }
 
-    public static buildJson(data, fullPath) {
+    /**
+     * Iterates through the all sass declarations per every group.
+     * 
+     * @param data data per gorup
+     * @param fullPath path to export
+     */
+    private writeToFileJson(data, fullPath) {
         let json = {};
         data.forEach(e => {
-            const data = ConvertOperations.getData(e);
+            const data = this.dataProcessing(e);
             if (data) {
                 json[e.context.name] = data;
-                fs.writeFileSync(`${fullPath}/${e.group[0]}/${e.context.type}.json`, JSON.stringify(json, null, 4));
+                const path = `${fullPath}/${e.group[0]}/${e.context.type}`;
+                FileOperations.writeToJson(path, json);
             }
         });
     }
 
-    private static getData(fileData) {
+    /**
+     * Constructs the josn object representation per sass declration.
+     * 
+     * @param fileData every sass declaration.
+     * @returns json object|null
+     */
+    private dataProcessing(fileData) {
         const res = {};
     
         if (fileData.description) {
@@ -38,17 +60,17 @@ export class ConvertOperations {
         if (fileData.parameter && fileData.parameter.length) {
             res[Constants.PARAMETERS] = {}
             fileData.parameter.forEach(e => {
-                res[Constants.PARAMETERS][e.name] = {'description': Common.splitString(e.description), 'type': e.type};
+                if (e.description) {
+                    res[Constants.PARAMETERS][e.name] = {};
+                    res[Constants.PARAMETERS][e.name][Constants.DESCRIPTION] = Common.splitString(e.description);
+                }
             })
         }
 
         if (fileData.return) {
-            const returnObj = fileData.return;
-            if (returnObj.description) {
-                returnObj.description = Common.splitString(returnObj.description);
+            if (fileData.return && fileData.return.description) {
+                res[Constants.RETURNS] = Common.splitString(fileData.return.description);
             }
-
-            res[Constants.RETURN] = returnObj;            
         }
 
         if (fileData.type) {
@@ -58,22 +80,12 @@ export class ConvertOperations {
         
         if (fileData.example) {
             const exampleJson = fileData.example.map(e => ({
-                code: Common.splitString(e.code),
-                description: Common.splitString(e.description)
+                description: Common.splitString(e.description),
+                code: Common.splitString(e.code)
             }));
             
             res[Constants.EXAMPLE] = exampleJson;
         }
-        
-        // if (fileData.require) {
-        //     const requireJson = fileData.require.map(e => ({
-        //             name: e.name,
-        //             type: e.type,
-        //             description: e.description
-        //         }));
-
-        //     res[Constants.REQUIRES] = requireJson;
-        // }
 
         return Object.keys(res).length ? res : null
     }
