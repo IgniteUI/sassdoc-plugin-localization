@@ -17,6 +17,7 @@
     "fs": "0.0.1-security",
     "fs-extra": "^7.0.0",
     "sassdoc": "^2.5.1",
+    "sassdoc-extras": "^2.4.3",
     "typescript": "^3.1.3"
   }
 }

@@ -4,6 +4,19 @@ import { Constants } from "./constants";
 import { Common } from "./common";
 
 export class ConvertOperations {
+
+    public static buildJsons(groupedData, fullPath) {
+        if (Array.isArray(groupedData)) {
+            ConvertOperations.buildJson(groupedData, fullPath);
+            return;
+        }
+
+        const keys = Object.keys(groupedData);
+        keys.forEach(key => {
+            ConvertOperations.buildJsons(groupedData[key], fullPath);
+        });
+    }
+
     public static buildJson(data, fullPath) {
         let json = {};
         data.forEach(e => {
@@ -30,11 +43,12 @@ export class ConvertOperations {
         }
 
         if (fileData.return) {
-            if (typeof(fileData.return) === 'object') {
-                res[Constants.RETURN] = fileData.return;
-            } else {
-                res[Constants.RETURN] = Common.splitString(fileData.return);
+            const returnObj = fileData.return;
+            if (returnObj.description) {
+                returnObj.description = Common.splitString(returnObj.description);
             }
+
+            res[Constants.RETURN] = returnObj;            
         }
 
         if (fileData.type) {
@@ -51,15 +65,15 @@ export class ConvertOperations {
             res[Constants.EXAMPLE] = exampleJson;
         }
         
-        if (fileData.require) {
-            const requireJson = fileData.require.map(e => ({
-                    name: e.name,
-                    type: e.type,
-                    description: e.description
-                }));
+        // if (fileData.require) {
+        //     const requireJson = fileData.require.map(e => ({
+        //             name: e.name,
+        //             type: e.type,
+        //             description: e.description
+        //         }));
 
-            res[Constants.REQUIRES] = requireJson;
-        }
+        //     res[Constants.REQUIRES] = requireJson;
+        // }
 
         return Object.keys(res).length ? res : null
     }
