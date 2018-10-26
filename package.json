@@ -1,20 +1,28 @@
 {
   "name": "sassdoc-plugin-localization",
   "version": "1.0.0",
-  "description": "sassdoc-plugin",
+  "description": "Sassdoc plugin which localize your documentation",
+  "author": "Infragistics",
+  "license": "MIT",
   "main": "dist/index.js",
+  "files": [
+      "dist/"
+  ],
   "scripts": {
-    "test": "test"
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IgniteUI/sassdoc-plugin-localization"
   },
   "keywords": [
     "sassdoc",
-    "plugin"
+    "localization",
+    "plugin",
+    "sassdocplugin"
   ],
-  "author": "Aleksandar Kamenov",
-  "license": "ISC",
   "dependencies": {
     "@types/node": "^7.0.5",
-    "fs": "0.0.1-security",
     "fs-extra": "^7.0.0",
     "sassdoc": "^2.5.1",
     "sassdoc-extras": "^2.4.3",
