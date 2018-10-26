@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 
-import { Constants } from "./constants";
-import { Common } from "./common";
-import { FileOperations } from './file-operations';
+import { Constants } from '../utils/constants';
+import { Common } from '../utils/common';
+import { FileOperations } from '../utils/file-operations';
 
 export class ConvertOperations {
 
@@ -73,9 +73,9 @@ export class ConvertOperations {
             }
         }
 
-        if (fileData.type) {
-            res[Constants.TYPE] = fileData.type;
-        }
+        // if (fileData.type) {
+        //     res[Constants.TYPE] = fileData.type;
+        // }
 
         
         if (fileData.example) {

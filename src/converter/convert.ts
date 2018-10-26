@@ -1,7 +1,7 @@
 import * as extras from 'sassdoc-extras';
 
 import { Preprocess } from "../utils/preprocess";
-import { ConvertOperations } from "../utils/convert-operations";
+import { ConvertOperations } from "./convert-operations";
 
 export function convert (data, directoryPath) {
     const groupedData = extras.byGroupAndType(data);
