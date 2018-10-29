@@ -7,7 +7,11 @@ export class RenderOperations {
 
     public localizaData(data, directoryPath) {
         if(Array.isArray(data)) {
-            this.replaceLocalizedStrings(data, directoryPath)
+            const filePath = `${directoryPath}.json`;
+            if (fs.existsSync(filePath) && fs.readFileSync(filePath).length) {
+                this.replaceLocalizedStrings(data, directoryPath)
+            }
+
             return
         }
 
