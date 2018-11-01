@@ -90,7 +90,7 @@ and this file would contains the following **JSON** structure:
 Do the translations and update the text within the jsons.
 
 #### Step 3
-To apply the changes that you have applied in those json files we will have to use the second exported function which is [render](https://github.com/IgniteUI/sassdoc-plugin-localization/blob/master/src/renderer/render.ts) 
+To apply the changes that you have applied in those json files you will have to use the second exported function which is [render](https://github.com/IgniteUI/sassdoc-plugin-localization/blob/master/src/renderer/render.ts) 
 <br />
 The function accepts the same arguments as the [convert](https://github.com/IgniteUI/sassdoc-plugin-localization/blob/master/src/converter/convert.ts) function:
  1. The retrieved data which comes from the context of [Sassdoc](http://sassdoc.com/)
