@@ -31,15 +31,19 @@ export class RenderOperations {
     }
 
     public localizeObj(fileData, jsonData) {
+        if (!jsonData) {
+            return;
+        }
+
         if (fileData.description && jsonData.description) {
             fileData.description = Common.joinByCharacter(jsonData.description);
         }
 
         if (fileData.parameter && fileData.parameter.length && jsonData[Constants.PARAMETERS]) {
             fileData.parameter.forEach(p => {
-                const paramFromJson = jsonData[Constants.PARAMETERS][p.name].description;
+                const paramFromJson = jsonData[Constants.PARAMETERS][p.name];
                 if (p.description && paramFromJson) {
-                    return p.description = Common.joinByCharacter(paramFromJson);
+                    return p.description = Common.joinByCharacter(paramFromJson.description);
                 }
             })
         }
