@@ -1,4 +1,6 @@
 import * as fs from 'fs-extra';
+import * as path from 'path';
+
 import { Common } from '../utils/common';
 import { Constants } from '../utils/constants';
 
@@ -17,7 +19,7 @@ export class RenderOperations {
 
         const keys = Object.keys(data);
         keys.forEach(key => {
-            this.localizaData(data[key], `${directoryPath}/${key}`);
+            this.localizaData(data[key], path.join(directoryPath, key));
         })
     }
 

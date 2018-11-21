@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import * as path from 'path';
 
 import { Constants } from '../utils/constants';
 import { Common } from '../utils/common';
@@ -38,8 +39,8 @@ export class ConvertOperations {
             const data = this.dataProcessing(e);
             if (data) {
                 json[e.context.name] = data;
-                const path = `${fullPath}/${e.group[0]}/${e.context.type}`;
-                FileOperations.writeToJson(path, json);
+                const filePath = path.join(fullPath, e.group[0], e.context.type);
+                FileOperations.writeToJson(filePath, json);
             }
         });
     }
