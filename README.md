@@ -1,4 +1,6 @@
 ## Inspired and used by [igniteui-angular](https://github.com/IgniteUI/igniteui-angular)
+[![Build Status](https://travis-ci.org/IgniteUI/sassdoc-plugin-localization.svg?branch=master)](https://travis-ci.org/IgniteUI/sassdoc-plugin-localization)
+[![npm version](https://badge.fury.io/js/sassdoc-plugin-localization.svg)](https://badge.fury.io/js/sassdoc-plugin-localization)
 
 Localizer for [Sassdoc](http://sassdoc.com/)
 
