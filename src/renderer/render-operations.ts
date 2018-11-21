@@ -37,7 +37,10 @@ export class RenderOperations {
 
         if (fileData.parameter && fileData.parameter.length && jsonData[Constants.PARAMETERS]) {
             fileData.parameter.forEach(p => {
-                return p.description = Common.joinByCharacter(jsonData[Constants.PARAMETERS][p.name].description);
+                const paramFromJson = jsonData[Constants.PARAMETERS][p.name].description;
+                if (p.description && paramFromJson) {
+                    return p.description = Common.joinByCharacter(paramFromJson);
+                }
             })
         }
 
