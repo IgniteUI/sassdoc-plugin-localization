@@ -59,11 +59,21 @@ export class ConvertOperations {
         }
 
         if (fileData.parameter && fileData.parameter.length) {
-            res[Constants.PARAMETERS] = {}
+            res[Constants.PARAMETERS] = {};
             fileData.parameter.forEach(e => {
                 if (e.description) {
                     res[Constants.PARAMETERS][e.name] = {};
                     res[Constants.PARAMETERS][e.name][Constants.DESCRIPTION] = Common.splitString(e.description);
+                }
+            })
+        }
+
+        if(fileData.property && fileData.property.length) {
+            res[Constants.PROPERTIES] = {};
+            fileData.property.forEach(e => {
+                if (e.description) {
+                    res[Constants.PROPERTIES][e.name] = {};
+                    res[Constants.PROPERTIES][e.name][Constants.DESCRIPTION] = Common.splitString(e.description);
                 }
             })
         }

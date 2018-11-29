@@ -4,6 +4,7 @@ export class Constants {
      */
     public static DESCRIPTION = "description";
     public static PARAMETERS = "parameters";
+    public static PROPERTIES = "properties";
     public static RETURNS = "returns";
     public static CONTEXT = "context";
     public static TYPE = "type";

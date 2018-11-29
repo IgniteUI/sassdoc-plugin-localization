@@ -48,6 +48,15 @@ export class RenderOperations {
             })
         }
 
+        if (fileData.property && fileData.property.length && jsonData[Constants.PROPERTIES]) {
+            fileData.property.forEach(p => {
+                const propFromJson = jsonData[Constants.PROPERTIES][p.name];
+                if (p.description && propFromJson) {
+                    return p.description = Common.joinByCharacter(propFromJson.description);
+                }
+            });
+        }
+
         if(fileData.return && jsonData[Constants.RETURNS]) {
             fileData.return = Common.joinByCharacter(jsonData[Constants.RETURNS]);
         }
