@@ -57,8 +57,8 @@ export class RenderOperations {
             });
         }
 
-        if(fileData.return && jsonData[Constants.RETURNS]) {
-            fileData.return = Common.joinByCharacter(jsonData[Constants.RETURNS]);
+        if(fileData.return && fileData.return.description && jsonData[Constants.RETURNS]) {
+            fileData.return.description = Common.joinByCharacter(jsonData[Constants.RETURNS][Constants.DESCRIPTION]);
         }
 
         if(fileData.example && jsonData[Constants.EXAMPLE]) {

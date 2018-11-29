@@ -80,7 +80,8 @@ export class ConvertOperations {
 
         if (fileData.return) {
             if (fileData.return && fileData.return.description) {
-                res[Constants.RETURNS] = Common.splitString(fileData.return.description);
+                res[Constants.RETURNS] = {};
+                res[Constants.RETURNS][Constants.DESCRIPTION] = Common.splitString(fileData.return.description);
             }
         }
 
