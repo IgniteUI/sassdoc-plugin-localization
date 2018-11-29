@@ -57,8 +57,11 @@ export class RenderOperations {
             });
         }
 
-        if(fileData.return && fileData.return.description && jsonData[Constants.RETURNS]) {
-            fileData.return.description = Common.joinByCharacter(jsonData[Constants.RETURNS][Constants.DESCRIPTION]);
+        if(fileData.return && 
+            fileData.return.description && 
+            jsonData[Constants.RETURNS] &&
+            jsonData[Constants.RETURNS][Constants.DESCRIPTION]) {
+                fileData.return.description = Common.joinByCharacter(jsonData[Constants.RETURNS][Constants.DESCRIPTION]);
         }
 
         if(fileData.example && jsonData[Constants.EXAMPLE]) {
