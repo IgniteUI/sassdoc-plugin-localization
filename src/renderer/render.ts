@@ -6,5 +6,5 @@ export function render(data, directoryPath: string) {
     const groupedData = extras.byGroupAndType(data);
     
     const renderOperations = new RenderOperations();
-    renderOperations.localizaData(groupedData, directoryPath);
+    renderOperations.localizeData(groupedData, directoryPath);
 }
