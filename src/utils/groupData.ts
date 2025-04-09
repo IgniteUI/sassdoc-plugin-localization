@@ -1,22 +1,24 @@
 export function byGroupAndType(data: Array<any>) {
-  const sorted = new Map();
+  const result = Object.create(null);
 
   for (const item of data) {
-    const group = item.group[0];
-    const type = item.context.type;
+    const group = item?.group?.[0];
+    const type = item?.context?.type;
 
-    if (!sorted.has(group)) {
-      sorted.set(group, new Map());
+    if (group === undefined || type === undefined) {
+      continue;
     }
 
-    const groupMap = sorted.get(group);
-
-    if (!groupMap.has(type)) {
-      groupMap.set(type, []);
+    if (!Object.prototype.hasOwnProperty.call(result, group)) {
+      result[group] = Object.create(null);
     }
 
-    groupMap.get(type).push(item);
+    if (!Object.prototype.hasOwnProperty.call(result[group], type)) {
+      result[group][type] = [];
+    }
+
+    result[group][type].push(item);
   }
 
-  return sorted;
+  return result;
 }
