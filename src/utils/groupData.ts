@@ -1,19 +1,21 @@
 export function byGroupAndType(data: Array<any>) {
-  const sorted = {};
+  const sorted = new Map();
 
   for (const item of data) {
     const group = item.group[0];
     const type = item.context.type;
 
-    if (!(group in sorted)) {
-      sorted[group] = {};
+    if (!sorted.has(group)) {
+      sorted.set(group, new Map());
     }
 
-    if (!(type in sorted[group])) {
-      sorted[group][type] = [];
+    const groupMap = sorted.get(group);
+
+    if (!groupMap.has(type)) {
+      groupMap.set(type, []);
     }
 
-    sorted[group][type].push(item);
+    groupMap.get(type).push(item);
   }
 
   return sorted;

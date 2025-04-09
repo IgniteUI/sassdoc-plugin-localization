@@ -10,10 +10,6 @@
     "declaration": false,
     "sourceMap": false,
     "lib": ["ESNext"],
-    "noImplicitAny": false,
-    "typeRoots": ["node_modules/@types"],
-    "paths": {
-      "fs-extra": ["./node_modules/fs-extra/lib/index.js"]
-    }
+    "noImplicitAny": false
   }
 }
