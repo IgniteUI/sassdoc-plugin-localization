@@ -1,7 +1,7 @@
 ## SassDoc Plugin Localization for Ignite UI
 [![npm version](https://badge.fury.io/js/sassdoc-plugin-localization.svg)](https://badge.fury.io/js/sassdoc-plugin-localization)
 
-A localization plugin for [Sassdoc](http://sassdoc.com/) specifically designed to work with the Ignite UI SassDoc Theme.
+A localization plugin for [SassDoc](http://sassdoc.com/) specifically designed to work with the [Ignite UI SassDoc Theme](https://github.com/IgniteUI/igniteui-sassdoc-theme).
 
 This plugin enables you to generate multilingual documentation for your Sass codebase by:
 1. Exporting all sass declarations that need localization into JSON files
@@ -92,8 +92,7 @@ The plugin will generate a JSON file at `./your-path/bem/function.json` with the
                 ]
             }
         }
-    },
-    ...
+    }
 }
 ```
 
