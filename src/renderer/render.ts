@@ -1,8 +1,8 @@
-import * as extras from 'sassdoc-extras';
+import extras from 'sassdoc-extras';
 
-import { RenderOperations } from "./render-operations";
+import { RenderOperations } from "./render-operations.js";
 
-export function render(data, directoryPath) {
+export function render(data, directoryPath: string) {
     const groupedData = extras.byGroupAndType(data);
     
     const renderOperations = new RenderOperations();

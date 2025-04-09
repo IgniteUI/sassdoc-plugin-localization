@@ -1,9 +1,9 @@
-import * as extras from 'sassdoc-extras';
+import extras from 'sassdoc-extras';
 
-import { Preprocess } from "../utils/preprocess";
-import { ConvertOperations } from "./convert-operations";
+import { Preprocess } from "../utils/preprocess.js";
+import { ConvertOperations } from "./convert-operations.js";
 
-export function convert (data, directoryPath) {
+export function convert (data: object, directoryPath: string) {
     const groupedData = extras.byGroupAndType(data);
     
     Preprocess.buildJsonsHierarchy(groupedData, directoryPath);

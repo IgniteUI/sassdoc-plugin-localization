@@ -1,8 +1,8 @@
-import * as fs from 'fs-extra';
-import * as path from 'path';
+import fs from 'fs-extra';
+import path from 'path';
 
-import { Common } from '../utils/common';
-import { Constants } from '../utils/constants';
+import { Common } from '../utils/common.js';
+import { Constants } from '../utils/constants.js';
 
 export class RenderOperations {
     constructor() { }
