@@ -23,10 +23,11 @@
     "sassdocplugin"
   ],
   "dependencies": {
+    "fs-extra": "^7.0.1"
+  },
+  "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^7.10.14",
-    "fs-extra": "^7.0.1",
-    "sassdoc-extras": "^3.0.0",
+    "@types/node": "^22.14.0",
     "typescript": "^5.8.3"
   }
 }

@@ -13,7 +13,6 @@
     "noImplicitAny": false,
     "typeRoots": ["node_modules/@types"],
     "paths": {
-      "sassdoc-extras": ["./node_modules/sassdoc-extras/index.js"],
       "fs-extra": ["./node_modules/fs-extra/lib/index.js"]
     }
   }
