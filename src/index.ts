@@ -2,10 +2,12 @@ import path from "path/posix";
 import { convert } from "./converter/convert.js";
 import { render } from "./renderer/render.js";
 
+type Language = "en" | "ja" | "bg";
+
 type PluginOptions = {
   dir: string;
   mode: "import" | "export" | "both";
-  languages?: string[];
+  languages?: Language[];
 };
 
 export default function (options: PluginOptions) {
@@ -32,14 +34,14 @@ export default function (options: PluginOptions) {
       }
 
       if (mode === "import" || mode === "both") {
-        if (!ctx.lang || !options.languages?.includes(ctx.lang)) {
+        if (!ctx.language || !options.languages?.includes(ctx.language)) {
           console.warn(
             "[!] No valid language specified. Falling back to the default theme language.",
           );
           return false;
         }
 
-        const langDir = path.join(dir, ctx.lang);
+        const langDir = path.join(dir, ctx.language);
 
         console.info(`[↑] Importing localization data from ${langDir}`);
         render(ctx.data, langDir);
