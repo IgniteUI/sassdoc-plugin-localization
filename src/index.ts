@@ -2,7 +2,7 @@ import path from "path/posix";
 import { convert } from "./converter/convert.js";
 import { render } from "./renderer/render.js";
 
-type Language = "en" | "ja" | "bg";
+type Language = "en" | "ja";
 
 type PluginOptions = {
   dir: string;

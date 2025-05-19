@@ -8,8 +8,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: "npm"
@@ -24,13 +24,9 @@ jobs:
       - name: Build package
         run: npm run build
 
-      - name: Define NPM tag
+      - name: Define npm tag
         run: |
-          if [[ ${VERSION} == *"alpha"* || ${VERSION} == *"beta"* || ${VERSION} == *"rc"* ]]; then 
-            echo "NPM_TAG=next";
-          else 
-            echo "NPM_TAG=latest";
-          fi >> $GITHUB_ENV
+          if [[ ${VERSION} == *"alpha"* || ${VERSION} == *"beta"* || ${VERSION} == *"rc"* ]]; then echo "NPM_TAG=next"; else echo "NPM_TAG=latest"; fi >> $GITHUB_ENV
           echo ${NPM_TAG}
 
       - name: Create package version
