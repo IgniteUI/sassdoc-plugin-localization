@@ -1,4 +1,4 @@
-import path from "path/posix";
+import path from "path";
 import { convert } from "./converter/convert.js";
 import { render } from "./renderer/render.js";
 
