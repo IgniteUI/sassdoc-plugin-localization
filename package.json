@@ -1,6 +1,6 @@
 {
   "name": "sassdoc-plugin-localization",
-  "version": "2.0.0",
+  "version": "0.0.1",
   "description": "SassDoc plugin for Ignite UI SassDoc Theme to help with localization.",
   "author": "Infragistics",
   "license": "MIT",
