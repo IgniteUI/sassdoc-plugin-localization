@@ -1,9 +1,8 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import path from 'path';
 
-import { Constants } from '../utils/constants';
-import { Common } from '../utils/common';
-import { FileOperations } from '../utils/file-operations';
+import { Constants } from '../utils/constants.js';
+import { Common } from '../utils/common.js';
+import { FileOperations } from '../utils/file-operations.js';
 
 export class ConvertOperations {
 
@@ -15,7 +14,7 @@ export class ConvertOperations {
      * @param groupedData sorted data by group
      * @param fullPath directory to export
      */
-    public writeJsonsData(groupedData, fullPath) {
+    public writeJsonsData(groupedData: object, fullPath: string) {
         if (Array.isArray(groupedData)) {
             this.writeToFileJson(groupedData, fullPath);
             return;
@@ -33,7 +32,7 @@ export class ConvertOperations {
      * @param data data per gorup
      * @param fullPath path to export
      */
-    private writeToFileJson(data, fullPath) {
+    private writeToFileJson(data: Array<any>, fullPath: string) {
         let json = {};
         data.forEach(e => {
             const data = this.dataProcessing(e);

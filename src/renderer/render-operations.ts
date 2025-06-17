@@ -1,13 +1,13 @@
-import * as fs from 'fs-extra';
-import * as path from 'path';
+import fs from 'fs-extra';
+import path from 'path';
 
-import { Common } from '../utils/common';
-import { Constants } from '../utils/constants';
+import { Common } from '../utils/common.js';
+import { Constants } from '../utils/constants.js';
 
 export class RenderOperations {
     constructor() { }
 
-    public localizaData(data, directoryPath) {
+    public localizeData(data, directoryPath) {
         if(Array.isArray(data)) {
             const filePath = `${directoryPath}.json`;
             if (fs.existsSync(filePath) && fs.readFileSync(filePath).length) {
@@ -19,7 +19,7 @@ export class RenderOperations {
 
         const keys = Object.keys(data);
         keys.forEach(key => {
-            this.localizaData(data[key], path.join(directoryPath, key));
+            this.localizeData(data[key], path.join(directoryPath, key));
         })
     }
 

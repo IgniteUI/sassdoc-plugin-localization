@@ -1,13 +1,12 @@
-import * as extras from 'sassdoc-extras';
+import { byGroupAndType } from "../utils/groupData.js";
+import { Preprocess } from "../utils/preprocess.js";
+import { ConvertOperations } from "./convert-operations.js";
 
-import { Preprocess } from "../utils/preprocess";
-import { ConvertOperations } from "./convert-operations";
+export function convert(data: Array<any>, directoryPath: string) {
+  const groupedData = byGroupAndType(data);
 
-export function convert (data, directoryPath) {
-    const groupedData = extras.byGroupAndType(data);
-    
-    Preprocess.buildJsonsHierarchy(groupedData, directoryPath);
+  Preprocess.buildJsonsHierarchy(groupedData, directoryPath);
 
-    const convertOperations = new ConvertOperations();
-    convertOperations.writeJsonsData(groupedData, directoryPath);
+  const convertOperations = new ConvertOperations();
+  convertOperations.writeJsonsData(groupedData, directoryPath);
 }

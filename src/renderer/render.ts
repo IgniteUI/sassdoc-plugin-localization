@@ -1,10 +1,9 @@
-import * as extras from 'sassdoc-extras';
+import { byGroupAndType } from "../utils/groupData.js";
+import { RenderOperations } from "./render-operations.js";
 
-import { RenderOperations } from "./render-operations";
-
-export function render(data, directoryPath) {
-    const groupedData = extras.byGroupAndType(data);
+export function render(data: Array<any>, directoryPath: string) {
+    const groupedData = byGroupAndType(data);
     
     const renderOperations = new RenderOperations();
-    renderOperations.localizaData(groupedData, directoryPath);
+    renderOperations.localizeData(groupedData, directoryPath);
 }

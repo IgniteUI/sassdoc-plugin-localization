@@ -1,6 +1,3 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
-
 name: Node.js Deploy
 
 on:
@@ -11,18 +8,33 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 12
-          registry-url: 'https://registry.npmjs.org'
+          node-version: 22
+          cache: "npm"
+          registry-url: "https://registry.npmjs.org"
+
       - run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
       - run: echo ${VERSION}
-      - run: npm ci
-      - run: npm run build
-      - run: if [[ ${VERSION} == *"alpha"* || ${VERSION} == *"beta"* || ${VERSION} == *"rc"* ]]; then echo "NPM_TAG=next"; else echo "NPM_TAG=latest"; fi >> $GITHUB_ENV
-      - run: echo ${NPM_TAG}
-      - run: npm version ${VERSION} --no-git-tag-version --save --verbose
-      - run: npm publish --tag ${NPM_TAG}
-        env: 
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build package
+        run: npm run build
+
+      - name: Define npm tag
+        run: |
+          if [[ ${VERSION} == *"alpha"* || ${VERSION} == *"beta"* || ${VERSION} == *"rc"* ]]; then echo "NPM_TAG=next"; else echo "NPM_TAG=latest"; fi >> $GITHUB_ENV
+          echo ${NPM_TAG}
+
+      - name: Create package version
+        run: npm version ${VERSION} --no-git-tag-version --save --verbose
+        working-directory: ./
+
+      - name: Publish sassdoc-plugin-localization
+        run: npm publish --tag ${NPM_TAG}
+        working-directory: ./
+        env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
